@@ -84,6 +84,19 @@ clf = KMeans(n_clusters=2)
 clf.fit(finance_features)
 pred = clf.predict(finance_features)
 
+#Feature Scaling
+from sklearn.preprocessing import MinMaxScaler
+salary_scaler = MinMaxScaler()
+stock_scaler = MinMaxScaler()
+
+salary = feature_extraction('salary')
+stock = feature_extraction('exercised_stock_options')
+
+salary_scaler.fit(salary)
+stock_scaler.fit(stock)
+
+print salary_scaler.transform([[200000.0]])
+print stock_scaler.transform([[1000000.0]])
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
