@@ -25,24 +25,22 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 
 ### fill in a regression here!  Name the regression object reg so that
 ### the plotting code below works, and you can see what your regression looks like
+from sklearn.linear_model import LinearRegression
 
+reg = LinearRegression()
+reg.fit(ages_train, net_worths_train)
 
-
-
-
-
-
-
-
-
+print 'Before cleaning:'
+print reg.coef_[0][0]
+print reg.score(ages_test, net_worths_test)
 
 try:
     plt.plot(ages, reg.predict(ages), color="blue")
 except NameError:
     pass
 plt.scatter(ages, net_worths)
-plt.show()
-
+#plt.show()
+plt.savefig('./outlier.png')
 
 ### identify and remove the most outlier-y points
 cleaned_data = []
@@ -69,6 +67,10 @@ if len(cleaned_data) > 0:
     try:
         reg.fit(ages, net_worths)
         plt.plot(ages, reg.predict(ages), color="blue")
+
+        print 'After cleaning:'
+        print reg.coef_[0][0]
+        print reg.score(ages_test, net_worths_test)
     except NameError:
         print "you don't seem to have regression imported/created,"
         print "   or else your regression object isn't named reg"
@@ -76,7 +78,8 @@ if len(cleaned_data) > 0:
     plt.scatter(ages, net_worths)
     plt.xlabel("ages")
     plt.ylabel("net worths")
-    plt.show()
+    #plt.show()
+    plt.savefig('./cleaned_outliers.png')
 
 
 else:
