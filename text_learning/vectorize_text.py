@@ -57,7 +57,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
             parsed_mail = parseOutText(email)
 
-            signatures = ["sara", "shackleton", "chris", "germani"]
+            signatures = ["sara", "shackleton", "chris", "germani", "sshacklensf", "cgermannsf"]
             for word in signatures:
                 parsed_mail = parsed_mail.replace(word, "")
 
